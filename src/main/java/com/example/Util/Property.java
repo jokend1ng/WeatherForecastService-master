@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 /**
-Класс для работы с переменными окружения прописаннными в application.yaml.
-*/
+ * Класс для работы с переменными окружения прописаннными в application.yaml.
+ */
 @Component
 public class Property {
     @Value("${defaultApi}")

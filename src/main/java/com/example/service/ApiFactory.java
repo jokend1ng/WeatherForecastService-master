@@ -5,10 +5,11 @@ import com.example.model.ApiModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-/** 
-    Фабрика для создания модели API  чтобы в дальнейшем использовать ее при 
-    создании строки подключения
-*/    
+
+/**
+ * Фабрика для создания модели API  чтобы в дальнейшем использовать ее при
+ * создании строки подключения
+ */
 
 @Service
 public class ApiFactory {

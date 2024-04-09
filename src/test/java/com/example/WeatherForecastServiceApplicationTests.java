@@ -20,7 +20,7 @@ class WeatherForecastServiceApplicationTests {
         String controllerResponse = RestAssured
                 .get("http://localhost:7777/weather-api/day")
                 .andReturn().asString();
-        assertTrue(apiResponce.equals(controllerResponse));
+        assertEquals(apiResponce,controllerResponse);
     }
 
     @Test

@@ -1,16 +1,19 @@
 package com.example.model;
+/*
+fgsdfg
+*/
 
 /**
-    Модель создания подключения по API
-*/    
+ * Модель создания подключения по API
+ */
 public class ApiModel {
 
-    private String requestUrl;
-    private String keyName;
-    private String keyValue;
-    private String cityName;
+    private final String requestUrl;
+    private final String keyName;
+    private final String keyValue;
+    private final String cityName;
     private String cityValue;
-    private String daysName;
+    private final String daysName;
     private String daysValue;
 
     private ApiModel(String requestUrl, String keyName, String keyValue, String cityName, String cityValue,

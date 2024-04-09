@@ -15,9 +15,10 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+
 /**
-    Сервис приложения, переводит строку  в jsonNode, запускает многопоточное полуения данных со сторонних сервисов
-*/  
+ * Сервис приложения, переводит строку  в jsonNode, запускает многопоточное полуения данных со сторонних сервисов
+ */
 @Service
 public class WeatherForecastService {
     private final Logger logger = LoggerFactory.getLogger(WeatherForecastService.class);
@@ -43,6 +44,7 @@ public class WeatherForecastService {
     public JsonNode getWeatherForWeek(String city) {
         return getWeatherForDays(city, "7");
     }
+
     /*получение из списка JsonNode*/
     private JsonNode getWeatherForDays(String city, String days) {
         String result = "all".equals(property.getDefaultApi()) ?
@@ -57,7 +59,7 @@ public class WeatherForecastService {
         return node;
     }
     /* Создаеся Модель API, отправляется на ApiResponcer для получения данных. */
-   
+
     private String getInformationFromApi(String api, String city, String days) {
         ApiModel apiModel = apiFactory.create(api);
         if (city != null) {
@@ -66,22 +68,21 @@ public class WeatherForecastService {
         apiModel.setDaysValue(String.valueOf(Integer.parseInt(days) * Integer.parseInt(apiModel.getDaysValue())));
         return apiResponcer.getWeatherFromApi(apiModel);
     }
-/*Получение данных используется многопоточка и упаковка их в список*/
+
+    /*Получение данных используется многопоточка и упаковка их в список*/
     private List<String> getInformationFromAllApis(String city, String days) {
         List<String> dataFromApis = new ArrayList<>();
         List<Future<String>> futures = new ArrayList<>();
         for (String apiModel : property.getApis()) {
-            futures.add(executorService.submit(() -> {
-                return getInformationFromApi(apiModel, city, days);
-            }));
+            futures.add(executorService.submit(() -> getInformationFromApi(apiModel, city, days)));
         }
-        for (Future future : futures) {
+        futures.forEach(future -> {
             try {
                 dataFromApis.add(String.valueOf(future.get()));
             } catch (InterruptedException | ExecutionException e) {
                 logger.error(e.getMessage());
             }
-        }
+        });
         return dataFromApis;
     }
 }
