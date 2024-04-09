@@ -1,6 +1,8 @@
 package com.example.model;
 
-// Модель создания подключения по API
+/**
+    Модель создания подключения по API
+*/    
 public class ApiModel {
 
     private String requestUrl;
