@@ -1,0 +1,31 @@
+
+apis: weatherapi,openweathermap
+defaultApi: openweathermap
+openweathermap:
+    params:
+        city:
+            name: q
+        days:
+            name: cnt
+            value: 9
+        key:
+            name: appid
+            value: 928ebd8d3e967da51398fce48a97561c
+    requestUrl: http://api.openweathermap.org/data/2.5/forecast?
+server:
+    port: 7777
+spring:
+    application:
+        name: WeatherForecastService
+town: Moscow
+weatherapi:
+    params:
+        city:
+            name: q
+        days:
+            name: days
+            value: 1
+        key:
+            name: key
+            value: c75543c70d5c486aa6c164531240604
+    requestUrl: https://api.weatherapi.com/v1/forecast.json?
