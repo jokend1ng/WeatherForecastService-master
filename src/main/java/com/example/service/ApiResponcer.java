@@ -13,12 +13,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+/** 
+    Сервис для создания строки и получения json со стороннего api
+*/    
 
 @Service
 public class ApiResponcer {
 
     private final Logger logger = LoggerFactory.getLogger(ApiResponcer.class);
-
+/* метод возвращает строку, которую в сервисе приложения приводиться к json формату */
     public String getResponse(String api) {
         String resultContent = null;
         HttpGet httpGet = new HttpGet(api);
@@ -35,10 +38,8 @@ public class ApiResponcer {
         }
         return resultContent;
     }
-
+    /*конкатинируем значения из модели Api для получения строчки запроса*/
     public String getWeatherFromApi(ApiModel api) {
-        System.out.println(String.format("%s%s=%s&%s=%s&%s=%s", api.getRequestUrl(), api.getCityName(),
-                api.getCityValue(), api.getDaysName(), api.getDaysValue(), api.getKeyName(), api.getKeyValue()));
         return getResponse(String.format("%s%s=%s&%s=%s&%s=%s", api.getRequestUrl(), api.getCityName(),
                 api.getCityValue(), api.getDaysName(), api.getDaysValue(), api.getKeyName(), api.getKeyValue()));
     }
