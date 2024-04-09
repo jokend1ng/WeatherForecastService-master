@@ -5,8 +5,10 @@ import com.example.service.WeatherForecastService;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-
+/** Класс контроллер, имеет 2 метода по запросу на день и на неделю, возвращает JsonNode,
+ В методе используется необязательный параметр city  который можно задать путем добавления
+ в строку запроса ?city = Novgorod
+*/
 @RestController
 @RequestMapping("weather-api")
 public class WeatherForecastController {
