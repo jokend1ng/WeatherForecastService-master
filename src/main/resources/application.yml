@@ -1,6 +1,17 @@
-
+#Список возможных API
 apis: weatherapi,openweathermap
+#Настройка с какого API  получать данные, если использовать all данные в списке будут из всех источников
 defaultApi: openweathermap
+#Порт приложения
+server:
+    port: 7777
+#Название приложения    
+spring:
+    application:
+        name: WeatherForecastService
+#Город по умолчанию       
+town: Moscow
+# Настройка API openweathermap
 openweathermap:
     params:
         city:
@@ -12,12 +23,7 @@ openweathermap:
             name: appid
             value: 928ebd8d3e967da51398fce48a97561c
     requestUrl: http://api.openweathermap.org/data/2.5/forecast?
-server:
-    port: 7777
-spring:
-    application:
-        name: WeatherForecastService
-town: Moscow
+# Настройка API weatherapi
 weatherapi:
     params:
         city:
